@@ -43,6 +43,11 @@ const listItemReview = [
         text: "testing"
     }
 ]
+const axiosConfig = {
+    baseURL: "http://localhost:9999/api",
+    timeout: 10000,
+}
+axios.create(axiosConfig)
 
 fillStar(document.getElementById("star-container"), 4)
 listReviews(listItemReview)
