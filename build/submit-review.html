@@ -14,21 +14,20 @@
             <div>
                 <h2 class="font-bold text-4xl leading-loose">What’s your rating?</h2>
             </div>
-            <form action="">
+            <form id="form-review">
                 <div class="py-5">
                     <div class="block my-1">
                         <h4 class="font-bold text-xl">Rating</h4>
-                        <input type="hidden" name="rate" v-model="choosedRate">
-                        <ul class="flex">
+                        <input type="hidden" name="rate" id="rate">
+                        <ul class="flex" id="input-star">
                             <li>
-                                <button type="button" @click="choosedRate = i">
+                                <button type="button" onclick="selectStar(1)">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 h-5 text-yellow-300"
                                             fill="none"
                                             viewBox="0 0 24 24"
-                                            stroke="currentColor" :class="{'fill-current': i <=
-                      choosedRate}"
+                                            stroke="currentColor"
                                     >
                                         <path
                                                 stroke-linecap="round"
@@ -40,14 +39,13 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" @click="choosedRate = i">
+                                <button type="button" onclick="selectStar(2)">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 h-5 text-yellow-300"
                                             fill="none"
                                             viewBox="0 0 24 24"
-                                            stroke="currentColor" :class="{'fill-current': i <=
-                      choosedRate}"
+                                            stroke="currentColor"
                                     >
                                         <path
                                                 stroke-linecap="round"
@@ -59,14 +57,13 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" @click="choosedRate = i">
+                                <button type="button" onclick="selectStar(3)">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 h-5 text-yellow-300"
                                             fill="none"
                                             viewBox="0 0 24 24"
-                                            stroke="currentColor" :class="{'fill-current': i <=
-                      choosedRate}"
+                                            stroke="currentColor"
                                     >
                                         <path
                                                 stroke-linecap="round"
@@ -78,14 +75,13 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" @click="choosedRate = i">
+                                <button type="button" onclick="selectStar(4)">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 h-5 text-yellow-300"
                                             fill="none"
                                             viewBox="0 0 24 24"
-                                            stroke="currentColor" :class="{'fill-current': i <=
-                      choosedRate}"
+                                            stroke="currentColor"
                                     >
                                         <path
                                                 stroke-linecap="round"
@@ -97,14 +93,13 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" @click="choosedRate = i">
+                                <button type="button" onclick="selectStar(5)">
                                     <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 h-5 text-yellow-300"
                                             fill="none"
                                             viewBox="0 0 24 24"
-                                            stroke="currentColor" :class="{'fill-current': i <=
-                      choosedRate}"
+                                            stroke="currentColor"
                                     >
                                         <path
                                                 stroke-linecap="round"

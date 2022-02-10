@@ -1,3 +1,9 @@
+const axiosConfig = {
+    baseURL: "http://localhost:9999/api",
+    timeout: 10000,
+}
+axios.create(axiosConfig)
+
 const fillStar = function(node, currentRate) {
     // const starContainer = document.getElementById("star-container")
     const childrenStar = node.children
@@ -128,11 +134,39 @@ const listItemReview = [
         text: "testing"
     }
 ]
-const axiosConfig = {
-    baseURL: "http://localhost:9999/api",
-    timeout: 10000,
-}
-axios.create(axiosConfig)
 
-fillStar(document.getElementById("star-container"), 4)
-listReviews(listItemReview)
+const starContainer = document.getElementById("star-container")
+if(starContainer != null) {
+    fillStar(starContainer, 4)
+}
+if (document.getElementById("list-reviews") != null) {
+    listReviews(listItemReview)
+}
+
+// form
+const formReview = document.getElementById("form-review")
+const submitReview = function (event) {
+    event.preventDefault()
+    const fd = new FormData(event.target)
+    console.log(...fd)
+}
+
+formReview.addEventListener("submit", submitReview, false)
+
+const fillStarInput = function(currentRate) {
+    const starContainer = document.getElementById("input-star")
+    for (var a = 0; a<starContainer.children.length; a++) {
+        const button = starContainer.children[a].children.item(0)
+        if(a <= currentRate-1) {
+            button.children.item(0).classList.add("fill-current")
+        } else {
+            button.children.item(0).classList.remove("fill-current")
+        }
+    }
+}
+
+const selectStar = function(rate) {
+    const inputRate = document.getElementById("rate")
+    inputRate.value = rate
+    fillStarInput(rate)
+}
