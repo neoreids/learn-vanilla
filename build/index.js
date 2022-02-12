@@ -1,24 +1,20 @@
 const axiosConfig = {
-    baseURL: "http://localhost:9999/api",
     timeout: 10000,
 }
 axios.create(axiosConfig)
-
 const fillStar = function(node, currentRate) {
-    // const starContainer = document.getElementById("star-container")
     const childrenStar = node.children
-    for (var a = 0; a<node.children.length; a++) {
-        if(a+1 <= currentRate) {
+    for (var a = 0; a < node.children.length; a++) {
+        if (a + 1 <= currentRate) {
             const svg = childrenStar[a].children[0]
             svg.classList.add("fill-current")
         }
     }
 }
-
-const listReviews = function (data) {
+const listReviews = function(data) {
     const listReviews = document.getElementById("list-reviews")
     if (data.length > 0) {
-        for (var a=0; a<data.length; a++) {
+        for (var a = 0; a < data.length; a++) {
             const contentChild = `<ul class="flex items-center gap-x-1 mr-4">
                             <li>
                                 <svg
@@ -103,68 +99,62 @@ const listReviews = function (data) {
                         </ul>
                         <span class="font-bold">4</span>,
                         <span class="ml-1 capitalize text-gray-400">text review</span>`
+            //create element li and set class for list item
             const childList = document.createElement("li")
             childList.classList.add("flex")
             childList.classList.add("py-3")
+            // set content of li with html string
             childList.innerHTML = contentChild
             const starContainer = childList.children[0]
             const starNumberContainer = childList.children[1]
             const reviewText = childList.children[2]
-
             fillStar(starContainer, data[a].rate)
             starNumberContainer.textContent = data[a].rate
-            reviewText.textContent = data[a].text
+            reviewText.textContent = data[a].review
             listReviews.append(childList)
         }
-
     }
 }
-
-const listItemReview = [
-    {
-        rate: 3,
-        text: "testing"
-    },
-    {
-        rate: 4,
-        text: "testing"
-    },
-    {
-        rate: 2,
-        text: "testing"
-    }
-]
-
 const starContainer = document.getElementById("star-container")
-if(starContainer != null) {
-    fillStar(starContainer, 4)
+if (starContainer != null) {
+    axios.get("/api/product/1").then(resp => resp.data).then(data => {
+        listReviews(data.data.rates)
+        var calculated_rate = data.data.calculated_rate
+        if (calculated_rate >= 3.5) {
+            calculated_rate = Math.ceil(calculated_rate)
+        } else {
+            calculated_rate = Math.floor(calculated_rate)
+        }
+        fillStar(starContainer, calculated_rate)
+        document.getElementById("calculated-rate").textContent = data.data.calculated_rate
+    })
 }
-if (document.getElementById("list-reviews") != null) {
-    listReviews(listItemReview)
-}
-
+// if (document.getElementById("list-reviews") != null) {
+//     listReviews(listItemReview)
+// }
 // form
 const formReview = document.getElementById("form-review")
-const submitReview = function (event) {
+const submitReview = function(event) {
     event.preventDefault()
     const fd = new FormData(event.target)
-    console.log(...fd)
+    axios.post("/api/submit-review", fd).then(resp => {
+        window.location.href = "/"
+    }).catch(e => {
+        alert("failed to submit review")
+    })
 }
-
 formReview.addEventListener("submit", submitReview, false)
-
 const fillStarInput = function(currentRate) {
     const starContainer = document.getElementById("input-star")
-    for (var a = 0; a<starContainer.children.length; a++) {
+    for (var a = 0; a < starContainer.children.length; a++) {
         const button = starContainer.children[a].children.item(0)
-        if(a <= currentRate-1) {
+        if (a <= currentRate - 1) {
             button.children.item(0).classList.add("fill-current")
         } else {
             button.children.item(0).classList.remove("fill-current")
         }
     }
 }
-
 const selectStar = function(rate) {
     const inputRate = document.getElementById("rate")
     inputRate.value = rate
