@@ -133,12 +133,23 @@ if (starContainer != null) {
 //     listReviews(listItemReview)
 // }
 // form
+
+const toggleForm = function() {
+    const formContainer = document.getElementById("form-container")
+    const isHidden = formContainer.classList.contains("hidden")
+    if(isHidden) {
+        formContainer.classList.remove("hidden")
+    } else {
+        formContainer.classList.add("hidden")
+    }
+}
+
 const formReview = document.getElementById("form-review")
 const submitReview = function(event) {
     event.preventDefault()
     const fd = new FormData(event.target)
     axios.post("/api/submit-review", fd).then(resp => {
-        window.location.href = "/"
+        toggleForm()
     }).catch(e => {
         alert("failed to submit review")
     })
