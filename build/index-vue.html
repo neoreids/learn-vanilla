@@ -10,7 +10,7 @@
 <body class="bg-gray-200 font-sans">
 <div id="app" class="h-screen w-full relative">
     <div class="h-full flex justify-center pt-5">
-        <div class="w-1/2 border-gray-200 shadow-sm bg-white py-20 rounded-md px-28">
+        <div class="w-1/2 h-full border-gray-200 shadow-sm bg-white py-20 rounded-md px-28">
             <div>
                 <h2 class="font-bold text-4xl leading-loose">The Minimalist
                     Enterpreneur</h2>
@@ -22,7 +22,7 @@
                         v-model:rating="calculated_rate"
                         :increment="0.5"
                         :star-size="20"
-                        border-color="#fde047" active-color="#fde047" :show-rating="false"
+                        border-color="#fde047" active-color="#fde047" :show-rating="false" :read-only="true"
                 ></star-rating>
                 <button @click.prevent="isFormShow = !isFormShow"
                    class="shadow-sm rounded-md p-2 text-center border border-gray-100">Add
@@ -39,7 +39,7 @@
                                 v-model:rating="rate.rate"
                                 :increment="0.5"
                                 :star-size="20"
-                                border-color="#fde047" active-color="#fde047"
+                                border-color="#fde047" active-color="#fde047" :read-only="true"
                         ></star-rating>
 <!--                        <span class="font-bold">4</span>,-->
                         <span class="ml-1 capitalize">{{rate.review}}</span>
