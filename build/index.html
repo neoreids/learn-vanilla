@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="index.css"/>
 </head>
 <body class="bg-gray-200 font-sans">
-<div id="app" class="h-screen w-full px-10">
-    <div class="flex pt-5">
-        <div class="w-1/2 h-full border-gray-200 shadow-sm bg-white py-20 rounded-md px-28 mx-10">
+<div id="app" class="h-screen w-full relative">
+    <div class="h-full flex justify-center pt-5">
+        <div class="w-1/2 border-gray-200 shadow-sm bg-white py-20 rounded-md px-28">
             <div>
                 <h2 class="font-bold text-4xl leading-loose">The Minimalist
                     Enterpreneur</h2>
@@ -100,9 +100,9 @@
                         </svg>
                     </li>
                 </ul>
-                <a href="submit-review.html"
+                <button onclick="toggleForm()"
                    class="shadow-sm rounded-md p-2 text-center border border-gray-100">Add
-                    Review</a>
+                    Review</button>
             </div>
 
             <div class="w-full h-1 bg-gray-100"></div>
@@ -199,7 +199,10 @@
                 </ul>
             </div>
         </div>
-        <div class="w-1/2 border-gray-200 shadow-sm bg-white py-20 rounded-md px-28 mx-10">
+    </div>
+    <div id="form-container" class="hidden flex justify-center absolute w-full top-0">
+        <div class="bg-black w-full h-screen absolute bg-opacity-25 z-5" onclick="toggleForm()"></div>
+        <div class="w-1/2 border-gray-200 shadow-sm bg-white py-20 rounded-md px-28 z-10 mt-5">
             <div>
                 <h2 class="font-bold text-4xl leading-loose">What’s your rating?</h2>
             </div>
