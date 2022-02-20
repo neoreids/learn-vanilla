@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Product</title>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body class="bg-gray-200 font-sans">
+<div id="app" class="h-screen w-full relative">
+    <div class="h-full flex justify-center pt-5">
+        <div class="w-1/2 border-gray-200 shadow-sm bg-white py-20 rounded-md px-28">
+            <div>
+                <h2 class="font-bold text-4xl leading-loose">The Minimalist
+                    Enterpreneur</h2>
+            </div>
+            <div class="grid grid-cols-3 mb-5">
+                <span class="font-bold text-2xl flex items-center w-5"
+                      id="calculated-rate">{{calculated_rate}}</span>
+                <star-rating
+                        v-model:rating="formRate"
+                        :increment="0.5"
+                        :star-size="20"
+                        border-color="#fde047" active-color="#fde047" :show-rating="false"
+                ></star-rating>
+                <button @click.prevent="isFormShow = !isFormShow"
+                   class="shadow-sm rounded-md p-2 text-center border border-gray-100">Add
+                    Review</button>
+            </div>
+
+            <div class="w-full h-1 bg-gray-100"></div>
+
+            <div class="py-5">
+                <h4 class="font-bold text-xl">Reviews</h4>
+                <ul id="list-reviews">
+<!--                    <li class="flex py-3 hidden">-->
+<!--                        <ul class="flex items-center gap-x-1 mr-4">-->
+<!--                            <li>-->
+<!--                                <svg-->
+<!--                                        xmlns="http://www.w3.org/2000/svg"-->
+<!--                                        class="w-5 h-5 text-yellow-300"-->
+<!--                                        fill="none"-->
+<!--                                        viewBox="0 0 24 24"-->
+<!--                                        stroke="currentColor"-->
+<!--                                >-->
+<!--                                    <path-->
+<!--                                            stroke-linecap="round"-->
+<!--                                            stroke-linejoin="round"-->
+<!--                                            stroke-width="2"-->
+<!--                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"-->
+<!--                                    />-->
+<!--                                </svg>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <svg-->
+<!--                                        xmlns="http://www.w3.org/2000/svg"-->
+<!--                                        class="w-5 h-5 text-yellow-300"-->
+<!--                                        fill="none"-->
+<!--                                        viewBox="0 0 24 24"-->
+<!--                                        stroke="currentColor"-->
+<!--                                >-->
+<!--                                    <path-->
+<!--                                            stroke-linecap="round"-->
+<!--                                            stroke-linejoin="round"-->
+<!--                                            stroke-width="2"-->
+<!--                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"-->
+<!--                                    />-->
+<!--                                </svg>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <svg-->
+<!--                                        xmlns="http://www.w3.org/2000/svg"-->
+<!--                                        class="w-5 h-5 text-yellow-300"-->
+<!--                                        fill="none"-->
+<!--                                        viewBox="0 0 24 24"-->
+<!--                                        stroke="currentColor"-->
+<!--                                >-->
+<!--                                    <path-->
+<!--                                            stroke-linecap="round"-->
+<!--                                            stroke-linejoin="round"-->
+<!--                                            stroke-width="2"-->
+<!--                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"-->
+<!--                                    />-->
+<!--                                </svg>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <svg-->
+<!--                                        xmlns="http://www.w3.org/2000/svg"-->
+<!--                                        class="w-5 h-5 text-yellow-300"-->
+<!--                                        fill="none"-->
+<!--                                        viewBox="0 0 24 24"-->
+<!--                                        stroke="currentColor"-->
+<!--                                >-->
+<!--                                    <path-->
+<!--                                            stroke-linecap="round"-->
+<!--                                            stroke-linejoin="round"-->
+<!--                                            stroke-width="2"-->
+<!--                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"-->
+<!--                                    />-->
+<!--                                </svg>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <svg-->
+<!--                                        xmlns="http://www.w3.org/2000/svg"-->
+<!--                                        class="w-5 h-5 text-yellow-300"-->
+<!--                                        fill="none"-->
+<!--                                        viewBox="0 0 24 24"-->
+<!--                                        stroke="currentColor"-->
+<!--                                >-->
+<!--                                    <path-->
+<!--                                            stroke-linecap="round"-->
+<!--                                            stroke-linejoin="round"-->
+<!--                                            stroke-width="2"-->
+<!--                                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"-->
+<!--                                    />-->
+<!--                                </svg>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                        <span class="font-bold">4</span>,-->
+<!--                        <span class="ml-1 capitalize">text review</span>-->
+<!--                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div v-if="isFormShow" class="flex justify-center absolute w-full top-0">
+        <div class="bg-black w-full h-screen absolute bg-opacity-25 z-5" @click="isFormShow = !isFormShow"></div>
+        <div class="w-1/2 border-gray-200 shadow-sm bg-white py-20 rounded-md px-28 z-10 mt-5">
+            <div>
+                <h2 class="font-bold text-4xl leading-loose">What’s your rating?</h2>
+            </div>
+            <form id="form-review" @submit.prevent="submitForm">
+                <div class="py-5">
+                    <div class="block my-1">
+                        <h4 class="font-bold text-xl">Rating</h4>
+                        <input type="hidden" name="rate" id="rate" v-model="formRate">
+                        <input type="hidden" name="product_id" value="1"
+                               id="product_id">
+                        <star-rating
+                                v-model:rating="formRate"
+                                :increment="0.5"
+                                :star-size="20"
+                                border-color="#fde047"
+                                active-color="#fde047"></star-rating>
+                    </div>
+                    <div class="block my-1">
+                        <h4 class="font-bold text-xl">Review</h4>
+                        <input type="text" name="review"
+                               class="border border-gray-200 rounded-sm py-2 px-3 focus:border-gray-200" placeholder="start typing ....">
+                    </div>
+                    <div class="block my-10">
+                        <button type="submit"
+                                class="px-3 py-2 text-gray-400 border border-gray-300 rounded-sm shadow-sm hover:bg-yellow-300 hover:border-yellow-300 hover:text-white">Submit
+                            review</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/vue-star-rating@next/dist/VueStarRating.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js" integrity="sha512-/Q6t3CASm04EliI1QyIDAA/nDo9R8FQ/BULoUFyN4n/BDdyIxeH7u++Z+eobdmr11gG5D/6nPFyDlnisDwhpYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="index-vue.js"></script>
+</body>
+</html>
